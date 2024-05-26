@@ -26,23 +26,17 @@ This is a simple Phonebook Utility Application built to manage a list of contact
 
 ### Installation
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/your-username/contact-management-application.git
-    cd contact-management-application
-    ```
-
-2. Build the project:
+1. Build the project:
     ```bash
     ./gradlew build
     ```
 
-3. Run the application:
+2. Run the application:
     ```bash
     ./gradlew bootRun
     ```
 
-4. Open your browser and navigate to `http://localhost:8080`.
+3. Open your browser and navigate to `http://localhost:8080`.
 
 ## Usage
 
