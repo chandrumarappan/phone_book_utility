@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Phonebook-util</title>
+    <link href="/css/style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<h1>Contact Directory</h1>
+<div class="message-box" th:if="${message}" th:text="${message}"></div>
+<form method="post" th:action="@{/}" th:object="${contactDetail}">
+    <input th:field="*{id}" type="hidden"/>
+    <div>
+        <label for="name">Name:</label>
+        <input id="name" pattern="[A-Za-z ]*" required
+               th:field="*{name}"
+               title="Only letters and spaces are allowed"
+               type="text"/>
+    </div>
+    <div>
+        <label for="phoneNumber">Phone Number:</label>
+        <input id="phoneNumber" inputmode="numeric" pattern="[0-9]*"
+               required
+               th:field="*{phoneNumber}" title="Only numbers are allowed" type="text"/>
+    </div>
+    <div>
+        <label for="address">Address:</label>
+        <input id="address" required th:field="*{address}" type="text"/>
+    </div>
+    <div>
+        <button type="submit">Add Contact</button>
+    </div>
+</form>
+
+<h2>Search Contacts</h2>
+<form method="get" th:action="@{/search}">
+    <input name="textInput" pattern="([A-Za-z ]+|\d+)"
+           title="Enter either all letters or all numbers" type="text"/>
+    <button type="submit">Search</button>
+</form>
+
+<h2>Contact List</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Phone Number</th>
+        <th>Address</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contactDetail : ${contactDetails}">
+        <td th:text="${contactDetail.name}">Name</td>
+        <td th:text="${contactDetail.phoneNumber}">Phone Number</td>
+        <td th:text="${contactDetail.address}">Address</td>
+        <td>
+            <a th:href="@{/edit/{id}(id=${contactDetail.id})}">Edit</a>
+            <a th:href="@{/delete/{id}(id=${contactDetail.id})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

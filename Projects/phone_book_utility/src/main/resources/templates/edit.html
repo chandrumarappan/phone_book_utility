@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Phonebook-util</title>
+    <link href="/css/style.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<h1>Edit Contact</h1>
+<div class="message-box" th:if="${message}" th:text="${message}"></div>
+<form method="post" th:action="@{/}" th:object="${contactDetail}">
+    <input th:field="*{id}" type="hidden"/>
+    <div>
+        <label for="name">Name:</label>
+        <input id="name" pattern="[A-Za-z ]*" required th:field="*{name}" title="Only letters and spaces are allowed"
+               type="text"/>
+    </div>
+    <div>
+        <label for="phoneNumber">Phone Number:</label>
+        <input id="phoneNumber" inputmode="numeric" pattern="[0-9]*" required th:field="*{phoneNumber}"
+               title="Only numbers are allowed" type="text"/>
+    </div>
+    <div>
+        <label for="address">Address:</label>
+        <input id="address" required th:field="*{address}" type="text"/>
+    </div>
+    <div>
+        <button type="submit">Update Contact</button>
+    </div>
+</form>
+</body>
+</html>
